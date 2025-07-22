@@ -7,6 +7,7 @@
     <link rel="icon" href="icon.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="cv-container">
@@ -87,11 +88,25 @@
                     <div class="skill-progress" style="width: 50%"></div>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-name">C++</div>
+                    <div class="skill-name">C</div>
                     <div class="skill-value">60%</div>
                 </div>
                 <div class="skill-bar">
                     <div class="skill-progress" style="width: 60%"></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">XML</div>
+                    <div class="skill-value">75%</div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 75%"></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">JSON</div>
+                    <div class="skill-value">75%</div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 75%"></div>
                 </div>
             </div>
 
@@ -102,9 +117,9 @@
                     <div class="tech-tag">Visual Studio Code</div>
                     <div class="tech-tag">Apache NetBeans</div>
                     <div class="tech-tag">CodeBlocks</div>
+                    <div class="tech-tag">Flowgorithm</div>
                     <div class="tech-tag">NotePad++</div>
                     <div class="tech-tag">Umlet</div>
-                    <div class="tech-tag">Flowgorithm</div>
                     <!-- Versionamento e deploy -->
                     <div class="tech-tag">GitHub</div>
                     <div class="tech-tag">Netlify</div>
@@ -113,16 +128,14 @@
                     <div class="tech-tag">Cisco Packet Tracer</div>
                     <!-- Remote e assistenza -->
                     <div class="tech-tag">TeamViewer</div>
-                    <!-- Office e presentazioni -->
+                    <!-- Office e media -->
                     <div class="tech-tag">Word</div>
                     <div class="tech-tag">Excel</div>
                     <div class="tech-tag">PowerPoint</div>
                     <div class="tech-tag">Publisher</div>
                     <div class="tech-tag">Prezi</div>
                     <div class="tech-tag">Canva</div>
-                    <!-- Multimedia -->
                     <div class="tech-tag">CapCut</div>
-                    <!-- CAD -->
                     <div class="tech-tag">AutoCAD</div>
                     <!-- AI -->
                     <div class="tech-tag">AI (ChatGPT - Claude - DeepSeek - Google AI Studio - GitHub Copilot - Microsoft Copilot)</div>
@@ -170,7 +183,7 @@
             <div class="sidebar-section">
                 <h3><i class="fas fa-plus"></i> Altro</h3>
                 <div class="interest-item">
-                    <span><i class="fas fa-globe"></i> Poche tracce online</span>
+                    <span><i class="fas fa-globe"></i> Poche tracce online, quasi nulle</span>
                 </div>
             </div>
         </div>
@@ -249,7 +262,7 @@
                         <div class="item-date">5 Mag - 11 Mag 2024</div>
                     </div>
                     <div class="item-description">
-                        Esperienza formativa presso diversi enti pubblici per conoscere il mondo dei servizi d'emergenza.
+                        Esperienza formativa di circa 30 ore presso diversi enti pubblici del territorio per conoscere il mondo dei servizi d'emergenza.
                         <ul>
                             <li>LUN: <strong>Polizia Locale</strong> - Cividate Camuno</li>
                             <li>MAR: <strong>Pronto Soccorso</strong> - Esine</li>
@@ -347,9 +360,13 @@
                 <i class="fas fa-download"></i>
                 Scarica CV in PDF
             </button>
+            <button class="download-btn" onclick="downloadPNG()">
+                <i class="fas fa-download"></i>
+                Scarica CV in PNG
+            </button>
         </div>
         <div class="download-text">
-            Clicca per scaricare una versione PDF del curriculum
+            Clicca per scaricare una versione PDF o PNG del curriculum
         </div>
     </div>
 
@@ -376,6 +393,35 @@
             // Mostra di nuovo i pulsanti di download
             downloadButtons.forEach(button => { 
                 button.style.display = 'block';
+            });
+        }
+        function downloadPNG() {
+            // Nascondi temporaneamente il pulsante per il PNG
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+
+            // Nascondi tutti i pulsanti di download
+            const downloadButtons = document.querySelectorAll('.cert-download-btn');
+            downloadButtons.forEach(button => {
+                button.style.display = 'none';
+            });
+
+            // Crea un canvas e disegna il contenuto della pagina
+            html2canvas(document.querySelector('.cv-container')).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'CV_Simone_Plona.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                // Mostra di nuovo il pulsante dopo un breve delay
+                setTimeout(() => {
+                    downloadSection.style.display = 'block';
+                }, 1000);
+
+                // Mostra di nuovo i pulsanti di download
+                downloadButtons.forEach(button => { 
+                    button.style.display = 'block';
+                });
             });
         }
     </script>
