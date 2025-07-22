@@ -502,10 +502,6 @@ body {
         font-weight: 500;
     }
 
-    .contact-item i {
-        display: none !important;
-    }
-
     /* Sezioni laterali eleganti */
     .sidebar-section {
         display: inline-block !important;
@@ -540,10 +536,6 @@ body {
         width: 30pt;
         height: 1pt;
         background: #667eea;
-    }
-
-    .sidebar-section h3 i {
-        display: none !important;
     }
 
     .skill-item {
@@ -646,10 +638,6 @@ body {
         background: #667eea;
     }
 
-    .main-section h2 i {
-        display: none !important;
-    }
-
     .cert-item {
         background: #fafbfc !important;
         border: 1pt solid #e9ecef !important;
@@ -746,10 +734,8 @@ body {
     /* Nasconde elementi non necessari per la stampa */
     .download-section,
     .cert-download-btn,
-    .pulse-ring {
-        display: none !important;
-    }
-
+    .pulse-ring,
+    .interest-item i,
     hr {
         display: none !important;
     }
