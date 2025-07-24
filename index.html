@@ -214,7 +214,7 @@
                     <span><i class="fas fa-users"></i> Collaborativo</span>
                 </div>
                 <div class="interest-item">
-                    <span><i class="fas fa-hands-helping"></i> Volenteroso</span>
+                    <span><i class="fas fa-handshake"></i> Rispettoso</span>
                 </div>
                 <div class="interest-item">
                     <span><i class="fas fa-stream"></i> Ordinato</span>
@@ -431,6 +431,10 @@
                 <i class="fas fa-download"></i>
                 Scarica CV in PNG
             </button>
+            <br><button class="download-btn" onclick="download()">
+                <i class="fas fa-download"></i>
+                Stampa CV
+            </button>
         </div>
         <div class="download-text">
             Clicca per scaricare una versione PDF o PNG del curriculum
@@ -439,28 +443,41 @@
 
     <script>
         function downloadPDF() {
-            // Nascondi temporaneamente il pulsante per il PDF
             const downloadSection = document.querySelector('.download-section');
             downloadSection.style.display = 'none';
 
-            // Nascondi tutti i pulsanti di download
             const downloadButtons = document.querySelectorAll('.cert-download-btn');
             downloadButtons.forEach(button => {
-                button.style.display = 'none';
+            button.style.display = 'none';
             });
-            
-            // Usa window.print() che permetterà di salvare come PDF
-            window.print();
-            
-            // Mostra di nuovo il pulsante dopo un breve delay
+
+            // Imposta una scala più alta per html2canvas per aumentare la risoluzione
+            html2canvas(document.querySelector('.cv-container'), { scale: 3 }).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            // Calcola le dimensioni della pagina in px per A4 (o usa quelle del canvas)
+            const pdf = new window.jspdf.jsPDF({
+                orientation: 'portrait',
+                unit: 'px',
+                format: [canvas.width, canvas.height]
+            });
+            pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+            pdf.save('CV_Simone_Plona.pdf');
+
             setTimeout(() => {
                 downloadSection.style.display = 'block';
             }, 1000);
 
-            // Mostra di nuovo i pulsanti di download
             downloadButtons.forEach(button => { 
                 button.style.display = 'block';
             });
+            });
+        }
+        // Carica jsPDF se non è già presente
+        if (typeof window.jspdf === 'undefined') {
+            const script = document.createElement('script');
+            script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+            script.onload = () => {};
+            document.head.appendChild(script);
         }
         function downloadPNG() {
             // Nascondi temporaneamente il pulsante per il PNG
@@ -489,6 +506,30 @@
                 downloadButtons.forEach(button => { 
                     button.style.display = 'block';
                 });
+            });
+        }
+        function download() {
+            // Nascondi temporaneamente il pulsante per il download
+            const downloadSection = document.querySelector('.download-section');
+            downloadSection.style.display = 'none';
+
+            // Nascondi tutti i pulsanti di download
+            const downloadButtons = document.querySelectorAll('.cert-download-btn');
+            downloadButtons.forEach(button => {
+                button.style.display = 'none';
+            });
+            
+            // Usa window.print() che permetterà di stampare il CV
+            window.print();
+            
+            // Mostra di nuovo il pulsante dopo un breve delay
+            setTimeout(() => {
+                downloadSection.style.display = 'block';
+            }, 1000);
+
+            // Mostra di nuovo i pulsanti di download
+            downloadButtons.forEach(button => { 
+                button.style.display = 'block';
             });
         }
     </script>
