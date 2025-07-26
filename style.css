@@ -736,7 +736,7 @@ body {
     .cert-download-btn,
     .pulse-ring,
     .interest-item i,
-    hr {
+    hr, a[target="_blank"] {
         display: none !important;
     }
 
