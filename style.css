@@ -409,6 +409,18 @@ body {
     }
 }
 
+.footer {
+    color: black;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    margin-top: 20px;
+    font-size: 75%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
 @media print {
     * {
         margin: 0;
