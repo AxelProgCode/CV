@@ -477,34 +477,36 @@
     <script>
         function downloadPDF() {
             const downloadSection = document.querySelector('.download-section');
+            const footer = document.querySelector('footer');
             downloadSection.style.display = 'none';
+            if (footer) footer.style.display = 'none';
 
             const downloadButtons = document.querySelectorAll('.cert-download-btn');
             downloadButtons.forEach(button => {
-            button.style.display = 'none';
+                button.style.display = 'none';
             });
 
-            // Imposta una scala più alta per html2canvas per aumentare la risoluzione
             html2canvas(document.querySelector('.cv-container'), { scale: 3 }).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            // Calcola le dimensioni della pagina in px per A4 (o usa quelle del canvas)
-            const pdf = new window.jspdf.jsPDF({
-                orientation: 'portrait',
-                unit: 'px',
-                format: [canvas.width, canvas.height]
-            });
-            pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-            pdf.save('CV_Simone_Plona.pdf');
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new window.jspdf.jsPDF({
+                    orientation: 'portrait',
+                    unit: 'px',
+                    format: [canvas.width, canvas.height]
+                });
+                pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+                pdf.save('CV_Simone_Plona.pdf');
 
-            setTimeout(() => {
-                downloadSection.style.display = 'block';
-            }, 1000);
+                setTimeout(() => {
+                    downloadSection.style.display = 'block';
+                    if (footer) footer.style.display = 'block';
+                }, 1000);
 
-            downloadButtons.forEach(button => { 
-                button.style.display = 'block';
-            });
+                downloadButtons.forEach(button => {
+                    button.style.display = 'block';
+                });
             });
         }
+
         // Carica jsPDF se non è già presente
         if (typeof window.jspdf === 'undefined') {
             const script = document.createElement('script');
@@ -512,56 +514,54 @@
             script.onload = () => {};
             document.head.appendChild(script);
         }
-        function downloadPNG() {
-            // Nascondi temporaneamente il pulsante per il PNG
-            const downloadSection = document.querySelector('.download-section');
-            downloadSection.style.display = 'none';
 
-            // Nascondi tutti i pulsanti di download
+        function downloadPNG() {
+            const downloadSection = document.querySelector('.download-section');
+            const footer = document.querySelector('footer');
+            downloadSection.style.display = 'none';
+            if (footer) footer.style.display = 'none';
+
             const downloadButtons = document.querySelectorAll('.cert-download-btn');
             downloadButtons.forEach(button => {
                 button.style.display = 'none';
             });
 
-            // Crea un canvas e disegna il contenuto della pagina
             html2canvas(document.querySelector('.cv-container')).then(canvas => {
                 const link = document.createElement('a');
                 link.download = 'CV_Simone_Plona.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
                 
-                // Mostra di nuovo il pulsante dopo un breve delay
                 setTimeout(() => {
                     downloadSection.style.display = 'block';
+                    if (footer) footer.style.display = 'block';
                 }, 1000);
 
-                // Mostra di nuovo i pulsanti di download
-                downloadButtons.forEach(button => { 
+                downloadButtons.forEach(button => {
                     button.style.display = 'block';
                 });
             });
         }
-        function download() {
-            // Nascondi temporaneamente il pulsante per il download
-            const downloadSection = document.querySelector('.download-section');
-            downloadSection.style.display = 'none';
 
-            // Nascondi tutti i pulsanti di download
+        function download() {
+            const downloadSection = document.querySelector('.download-section');
+            const footer = document.querySelector('footer');
+            downloadSection.style.display = 'none';
+            if (footer) footer.style.display = 'none';
+
             const downloadButtons = document.querySelectorAll('.cert-download-btn');
             downloadButtons.forEach(button => {
                 button.style.display = 'none';
             });
             
-            // Usa window.print() che permetterà di stampare il CV
             window.print();
             
-            // Mostra di nuovo il pulsante dopo un breve delay
             setTimeout(() => {
                 downloadSection.style.display = 'block';
+                if (footer) footer.style.display = 'block';
             }, 1000);
 
-            // Mostra di nuovo i pulsanti di download
-            downloadButtons.forEach(button => { 
+            downloadButtons.forEach(button => {
                 button.style.display = 'block';
             });
         }

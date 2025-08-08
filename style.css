@@ -746,6 +746,7 @@ body {
     /* Nasconde elementi non necessari per la stampa */
     .download-section,
     .cert-download-btn,
+    .footer,
     .pulse-ring,
     .interest-item i,
     hr, a[target="_blank"] {
