@@ -749,7 +749,8 @@ body {
     .footer,
     .pulse-ring,
     .interest-item i,
-    hr, a[target="_blank"] {
+    .note, hr,
+    a[target="_blank"] {
         display: none !important;
     }
 
