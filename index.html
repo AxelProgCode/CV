@@ -473,15 +473,7 @@
     <div class="download-section">
         <div class="download-btn-container">
             <div class="pulse-ring"></div>
-            <button class="download-btn" onclick="downloadPDF()">
-                <i class="fas fa-download"></i>
-                Scarica CV in PDF
-            </button>
-            <button class="download-btn" onclick="downloadPNG()">
-                <i class="fas fa-download"></i>
-                Scarica CV in PNG
-            </button>
-            <br><button class="download-btn" onclick="download()">
+            <button class="download-btn" onclick="download()">
                 <i class="fas fa-download"></i>
                 Stampa CV
             </button>
@@ -500,74 +492,6 @@
     </footer>
 
     <script>
-        function downloadPDF() {
-            const downloadSection = document.querySelector('.download-section');
-            const footer = document.querySelector('footer');
-            downloadSection.style.display = 'none';
-            if (footer) footer.style.display = 'none';
-
-            const downloadButtons = document.querySelectorAll('.cert-download-btn');
-            downloadButtons.forEach(button => {
-                button.style.display = 'none';
-            });
-
-            html2canvas(document.querySelector('.cv-container'), { scale: 3 }).then(canvas => {
-                const imgData = canvas.toDataURL('image/png');
-                const pdf = new window.jspdf.jsPDF({
-                    orientation: 'portrait',
-                    unit: 'px',
-                    format: [canvas.width, canvas.height]
-                });
-                pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-                pdf.save('CV_Simone_Plona.pdf');
-
-                setTimeout(() => {
-                    downloadSection.style.display = 'block';
-                    if (footer) footer.style.display = 'block';
-                }, 1000);
-
-                downloadButtons.forEach(button => {
-                    button.style.display = 'block';
-                });
-            });
-        }
-
-        // Carica jsPDF se non è già presente
-        if (typeof window.jspdf === 'undefined') {
-            const script = document.createElement('script');
-            script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
-            script.onload = () => {};
-            document.head.appendChild(script);
-        }
-
-        function downloadPNG() {
-            const downloadSection = document.querySelector('.download-section');
-            const footer = document.querySelector('footer');
-            downloadSection.style.display = 'none';
-            if (footer) footer.style.display = 'none';
-
-            const downloadButtons = document.querySelectorAll('.cert-download-btn');
-            downloadButtons.forEach(button => {
-                button.style.display = 'none';
-            });
-
-            html2canvas(document.querySelector('.cv-container')).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'CV_Simone_Plona.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-                
-                setTimeout(() => {
-                    downloadSection.style.display = 'block';
-                    if (footer) footer.style.display = 'block';
-                }, 1000);
-
-                downloadButtons.forEach(button => {
-                    button.style.display = 'block';
-                });
-            });
-        }
-
         function download() {
             const downloadSection = document.querySelector('.download-section');
             const footer = document.querySelector('footer');
