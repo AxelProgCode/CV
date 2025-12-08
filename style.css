@@ -707,10 +707,14 @@ body {
         letter-spacing: 0.5pt;
     }
 
+    .footer {
+        font-size: large;
+        color: #2c3e50 !important;
+    }
+
     /* Nasconde elementi non necessari per la stampa */
     .download-section,
     .cert-download-btn,
-    .footer,
     .interest-item i,
     .note, hr,
     a[target="_blank"] {

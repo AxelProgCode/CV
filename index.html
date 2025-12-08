@@ -490,28 +490,41 @@
         <p>
             Copyright © 2025 Simone Plona. Tutti i diritti riservati.<br>
             Si chiede gentilmente di non condividere i documenti scaricati.
-        </p>|<br>
-        <p>Ultimo aggiornamento: 09/11/2025 - 14:56</p>
+            <br>|<br>
+        </p>
+        <p>Ultimo aggiornamento: 08/12/2025 - 13:32</p>
     </footer>
 
     <script>
         function download() {
             const downloadSection = document.querySelector('.download-section');
             const footer = document.querySelector('footer');
+            
+            // Nasconde l'intera sezione di download
             downloadSection.style.display = 'none';
-            if (footer) footer.style.display = 'none';
 
+            // Se il footer esiste, nasconde il primo paragrafo
+            const firstParagraph = footer ? footer.querySelector('p:first-child') : null;
+            if (firstParagraph) {
+                firstParagraph.style.display = 'none';
+            }
+
+            // Nasconde i pulsanti di download delle certificazioni
             const downloadButtons = document.querySelectorAll('.cert-download-btn');
             downloadButtons.forEach(button => {
                 button.style.display = 'none';
             });
             
+            // Attiva la finestra di stampa
             window.print();
             
+            // Ri-visualizza gli elementi dopo la stampa (con un timeout per permettere la stampa)
             setTimeout(() => {
                 downloadSection.style.display = 'block';
-                if (footer) footer.style.display = 'block';
-            }, 1000);
+                if (firstParagraph) {
+                    firstParagraph.style.display = 'block'; // Ri-visualizza il primo paragrafo
+                }
+            }, 1000); // 1 secondo di attesa
 
             downloadButtons.forEach(button => {
                 button.style.display = 'block';
