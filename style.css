@@ -209,7 +209,7 @@ body {
 }
 
 .grade-highlight {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: #f5576c;
     color: white;
     padding: 8px 12px;
     border-radius: 8px;
@@ -748,4 +748,5 @@ body {
     .sidebar-section, .cert-item {
         box-shadow: 0 1pt 3pt rgba(0,0,0,0.1) !important;
     }
+
 }
