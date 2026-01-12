@@ -14,7 +14,7 @@ body {
 }
 
 .cv-container {
-    max-width: 900px;
+    max-width: 999px;
     margin: 0 auto;
     background: white;
     border-radius: 15px;
@@ -252,6 +252,31 @@ body {
     color: #666;
 }
 
+.cert-preview-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(90deg, #34c759 0%, #2ecc71 100%);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(52, 199, 89, 0.15);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+    width: 48%;
+    min-width: 180px;
+    justify-content: center;
+    text-align: center;
+}
+
+.cert-preview-btn:hover {
+    background: linear-gradient(90deg, #2ecc71 0%, #34c759 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(52,199,89,0.25);
+}
+
 .cert-download-btn {
     display: flex;
     align-items: center;
@@ -265,7 +290,7 @@ body {
     box-shadow: 0 2px 8px rgba(76,140,255,0.15);
     transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
     cursor: pointer;
-    width: 100%;
+    width: 48%;
     justify-content: center;
     text-align: center;
 }
@@ -382,6 +407,16 @@ body {
     
     .main-content {
         padding: 30px 20px 0px;
+    }
+
+    .cert-preview-btn,
+    .cert-download-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    div[style*="margin-top: 15px; display: flex"] {
+        flex-direction: column;
     }
 }
 
