@@ -769,6 +769,9 @@ body {
     a[target="_blank"] {
         display: none !important;
     }
+    .no-print {
+        display: none !important;
+    }
 
     /* Impostazioni pagina */
     @page {
@@ -799,4 +802,5 @@ body {
     }
 
 }
+
 
