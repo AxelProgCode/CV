@@ -81,6 +81,13 @@ body {
     color: #3498db;
 }
 
+.website-text {
+    display: inline;
+}
+.website-url-print {
+    display: none;
+}
+
 .sidebar-section {
     margin-bottom: 30px;
 }
@@ -513,6 +520,13 @@ body {
         font-weight: 500;
     }
 
+    .website-text {
+        display: none !important;
+    }
+    .website-url-print {
+        display: inline !important;
+    }
+
     /* Sezioni laterali eleganti */
     .sidebar-section {
         display: inline-block !important;
@@ -785,3 +799,4 @@ body {
     }
 
 }
+
